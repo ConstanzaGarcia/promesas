@@ -50,33 +50,37 @@ function animateElementTop(element, start, target, duration) { //Retornará prom
 const allLi = document.getElementsByTagName("li");
 Promise.all( // esto devuelve un arreglo de promesas y ejecutarlas a la vez, se resuelve cuansdo terminan todas las promesas.
     [
+        animateElementLeft(allLi[0], 0, 600, 6000),
         animateElementLeft(allLi[1], 0, 600, 8000),
-        animateElementLeft(allLi[0], 0, 600, 4000)
+        animateElementLeft(allLi[2], 0, 600, 4000)
     ]
 ).then((results) => {
-    console.log("Todas las animaciones terminaron");
+    console.log("Llegaron a la derecha");
     return Promise.all( // esto devuelve un arreglo de promesas y ejecutarlas a la vez, se resuelve cuansdo terminan todas las promesas.
         [
             animateElementTop(allLi[1], 0, 300, 1000),
-            animateElementTop(allLi[0], 100, 500, 1000)
+            animateElementTop(allLi[0], 100, 400, 1000),
+            animateElementTop(allLi[2], 100, 500, 700)
         ]
     )
 }).then((results) => {
-    console.log("Todas las animaciones terminaron");
+    console.log("Estan abajo");
     return Promise.all([
         animateElementLeft(allLi[1], 600, 0, 8000),
-        animateElementLeft(allLi[0], 600, 0, 4000)
+        animateElementLeft(allLi[0], 600, 0, 6000),
+        animateElementLeft(allLi[2], 600, 0, 4000)
     ]
     )
 }).then(() => {
-    console.log("Terminaron las animaciones");
+    console.log("Llegaron hacía la izquierda");
     return Promise.all([
         animateElementTop(allLi[1], 300, 0, 1000),
-        animateElementTop(allLi[0], 500, 100, 1000)
+        animateElementTop(allLi[0], 500, 100, 1000),
+        animateElementTop(allLi[2], 500, 100, 1500)
     ]
     )
 }).then((results) => {
-    console.log("Todas las animaciones terminaron");
+    console.log("Atraparon el queso");
 }).catch(() => {
     console.log("Falló la animación");
 });
