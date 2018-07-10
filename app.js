@@ -48,40 +48,31 @@ function animateElementTop(element, start, target, duration) { //Retornará prom
 //Secuencial
 
 const allLi = document.getElementsByTagName("li");
-animateElementLeft(allLi[0], -200, 200, 4000).then(() => { // coordenadas fuera de la pantalla se indican con numeros negativos. Acá se está haciendo uso de la promesa por fuera.
-    console.log("Terminó la animación de doge");
-    return animateElementLeft(allLi[1], -200, 200, 2000); //" cá tenemos una promesa anidada, es como decirle: hiciste esto, y ahora haz esto otro
-}).then(() => {
-    console.log("Terminó de llegar el cate");
-}).catch(() => {
-    console.log("Falló la animación");
-});
-
 Promise.all( // esto devuelve un arreglo de promesas y ejecutarlas a la vez, se resuelve cuansdo terminan todas las promesas.
     [
-        animateElementTop(allLi[1], -200, 600, 8000),
-        animateElementTop(allLi[0], -200, 600, 4000)
+        animateElementLeft(allLi[1], 0, 600, 8000),
+        animateElementLeft(allLi[0], 0, 600, 4000)
     ]
 ).then((results) => {
     console.log("Todas las animaciones terminaron");
     return Promise.all( // esto devuelve un arreglo de promesas y ejecutarlas a la vez, se resuelve cuansdo terminan todas las promesas.
         [
-            animateElementLeft(allLi[1], 0, 300, 1000),
-            animateElementLeft(allLi[0], 100, 500, 1000)
+            animateElementTop(allLi[1], 0, 300, 1000),
+            animateElementTop(allLi[0], 100, 500, 1000)
         ]
     )
 }).then((results) => {
     console.log("Todas las animaciones terminaron");
     return Promise.all([
-        animateElement(allLi[1], 600, -200, 8000),
-        animateElement(allLi[0], 600, -200, 4000)
+        animateElementLeft(allLi[1], 600, 0, 8000),
+        animateElementLeft(allLi[0], 600, 0, 4000)
     ]
     )
 }).then(() => {
     console.log("Terminaron las animaciones");
     return Promise.all([
-        animateElement(allLi[1], 300, 0, 1000),
-        animateElement(allLi[0], 500, 100, 1000)
+        animateElementTop(allLi[1], 300, 0, 1000),
+        animateElementTop(allLi[0], 500, 100, 1000)
     ]
     )
 }).then((results) => {
